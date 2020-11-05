@@ -10,12 +10,11 @@ import AVKit
 import AVFoundation
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet var playerView:PlayerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         print("view did load")
         playVideo()
     }
@@ -26,13 +25,20 @@ class ViewController: UIViewController {
             return
         }
         
-        print("starting video! \(url)")
-        
+        print("starting video!")
         let player = AVPlayer(url: url)
         playerView.player = player
         
         player.play()
     }
-
+    
+    @IBAction func PlayButtonPressed(Sender:UIButton){
+        print ("Play again..")
+        if let player = playerView.player {
+            player.seek(to: CMTime(seconds: 0, preferredTimescale: 1))
+            player.play()
+        }
+    }
+    
 }
 
